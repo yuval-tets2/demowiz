@@ -1,5 +1,5 @@
-datasource postgres {
-  provider = "postgresql"
+datasource mysql {
+  provider = "mysql"
   url      = env("DB_URL")
 }
 
@@ -35,4 +35,10 @@ model Event {
   name       String?
   customer   Customer? @relation(fields: [customerId], references: [id])
   customerId String?
+}
+
+model Fd {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
